@@ -31,7 +31,13 @@ defmodule Learn1 do
         end
     end
 
-    def givenChars(letters) do
-        letterList = 'letters'
+
+    def multiply_elem(a, b) do
+        Range.new(a,b)
+        |>Enum.map(fn x -> x*2 end)
+        |>Enum.filter(fn x -> rem(x,3)==0 end)
     end
+
+
+
 end
