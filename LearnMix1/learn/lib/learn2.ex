@@ -115,26 +115,27 @@ defmodule Learn2 do
     #At the end the number of tries needed should be printed. 
     #I counts only as one try if they input the same number multiple times consecutively.
     def guessing_game do
-        random_number = 2
+        random_number = Enum.random(1..10)
         number_of_guessings = 0
         guessed_number = gets("Guess a number between 1 and 10 included.\n")
         |>String.trim("\n")
-        |>String.to_integer()
+        |>String.to_integer
         
         _guessing_game(random_number, number_of_guessings, guessed_number)
     end
     defp _guessing_game(random_number, number_of_guessing, guessed_number) when random_number > guessed_number do
-        guessed_number = gets "The number is higher than your guess. Try another number! \n"
+        guessed_number = gets("The number is higher than your guess. Try another number! \n")
         |>String.trim("\n")
-        |>String.to_integer()
-        
+        |>String.to_integer
+
         number_of_guessing = number_of_guessing + 1
         _guessing_game(random_number, number_of_guessing, guessed_number)
     end
     defp _guessing_game(random_number, number_of_guessing, guessed_number) when random_number < guessed_number do
-        guessed_number = gets "The number is lower than your guess. Try another number! \n"
+        guessed_number = gets("The number is lower than your guess. Try another number! \n")
         |>String.trim("\n")
-        |>String.to_integer()
+        |>String.to_integer
+
         number_of_guessing = number_of_guessing + 1
         _guessing_game(random_number, number_of_guessing, guessed_number)
     end
@@ -145,7 +146,23 @@ defmodule Learn2 do
         puts "Amazing! You guessed the number in #{number_of_guessing} tries!"
     end
 
-
+    #Write a program that prints the next 20 leap years.
+    def leap_years do
+        cont = 20
+        year = 2017
+        _leap_years(cont, year)
+    end
+    defp _leap_years(0, _), do: puts("These are the next 20 leap years.")
+    defp _leap_years(cont, year) when rem(year,4) != 0 do
+        year = year + 1
+        _leap_years(cont, year)
+    end
+    defp _leap_years(cont, year) when rem(year,4) == 0 do
+        puts("#{year} is a leap year")
+        year = year + 1
+        cont = cont - 1
+        _leap_years(cont, year)
+    end
     
 
 
