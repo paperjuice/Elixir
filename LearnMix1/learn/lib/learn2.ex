@@ -28,19 +28,132 @@ defmodule Learn2 do
         puts "#{total} cartofi"
     end
 
-    #only when div with 3 or 5
-    def sum2(0), do: nil
-    def sum2 (number) do
-        total = number + (number - 1)
-        number = number-1
-        if(number == 0) do
-            puts "#{total}"
-        end
-        sum2(number)
+    #try to turn a IO.gets into an is_integer
+    def x do
+        b = IO.gets("Enter an integer: \n") 
+        |> String.trim("\n")
+        |> String.to_integer()
+        puts "#{b + 1}"
     end
-    def add_numbers(total) do
+
+    #sum only when div with 3 or 5 in a list
+    def sum(list,total) do 
+        _sum(list,total)
+    end
+    defp _sum([], total) do 
+        puts "The total is: #{total}."
+    end
+    defp _sum(list, total) when rem(hd(list),3) == 0 or rem(hd(list),5)==0 do 
+             _sum(tl(list), total + hd(list))
+    end
+    defp _sum(list, total) do 
+        _sum(tl(list),total)
+    end
+
+    #sum from 1 to n, where n is divizible with 3 or 5
+    def sum2(number, total) do
+        _sum2(number, total)
+    end
+    defp _sum2(0, total) do
+        puts "The sum of all numbers is #{total}"
+    end
+    defp _sum2(number, total) when rem(number,3)==0 or rem(number,5)==0 do
+        _sum2(number-1, total + number)
+    end
+    defp _sum2(number, total) do
+        _sum2(number-1, total)
+    end
+    
+
+    #Write a program that prints a multiplication table for numbers up to 12.
+    def multiply_table do
+        a = 1
+        b = 1
+        _multiply_table(a, b)
+    end
+    defp _multiply_table(a, b) when a ==12 and b == 13 do
+        nil
+    end 
+    defp _multiply_table(a, b) when b ==13 do
+        b = 1
+        a = a+1
+        _multiply_table(a,b)
+    end
+    defp _multiply_table(a, b) when b <=12 do
+        puts "#{a} x #{b} = #{a*b}"
+        b = b+1
+        _multiply_table(a,b)
+    end  
+
+
+    #Write a program that prints all prime numbers until 99.
+    def primes do
+        number_divided_by = 1
+        divisor = 1
+        _primes(divisor, number_divided_by)
+    end
+    defp _primes(_, 99) do
+        nil
+    end 
+    defp _primes(divisor, number_divided_by) when divisor == 1 do
+        _primes(divisor + 1, number_divided_by)        
+    end
+    defp _primes(divisor, number_divided_by) when divisor < number_divided_by and rem(number_divided_by, divisor) !=0 do
+        _primes(divisor+1, number_divided_by)
+    end
+    defp _primes(divisor, number_divided_by) when divisor < number_divided_by and rem(number_divided_by, divisor) ==0 do
+        _primes(1, number_divided_by+1)
+    end
+    defp _primes(divisor, number_divided_by) when divisor >= number_divided_by do
+        puts "#{number_divided_by} is prime"
+        _primes(1, number_divided_by+1)
+    end
+
+    #Write a guessing game where the user has to guess a secret number. 
+    #After every guess the program tells the user 
+    #whether their number was too large or too small. 
+    #At the end the number of tries needed should be printed. 
+    #I counts only as one try if they input the same number multiple times consecutively.
+    def guessing_game do
+        random_number = 2
+        number_of_guessings = 0
+        guessed_number = gets("Guess a number between 1 and 10 included.\n")
+        |>String.trim("\n")
+        |>String.to_integer()
         
+        _guessing_game(random_number, number_of_guessings, guessed_number)
     end
+    defp _guessing_game(random_number, number_of_guessing, guessed_number) when random_number > guessed_number do
+        guessed_number = gets "The number is higher than your guess. Try another number! \n"
+        |>String.trim("\n")
+        |>String.to_integer()
+        
+        number_of_guessing = number_of_guessing + 1
+        _guessing_game(random_number, number_of_guessing, guessed_number)
+    end
+    defp _guessing_game(random_number, number_of_guessing, guessed_number) when random_number < guessed_number do
+        guessed_number = gets "The number is lower than your guess. Try another number! \n"
+        |>String.trim("\n")
+        |>String.to_integer()
+        number_of_guessing = number_of_guessing + 1
+        _guessing_game(random_number, number_of_guessing, guessed_number)
+    end
+    defp _guessing_game(random_number, number_of_guessing, guessed_number) when random_number == guessed_number and number_of_guessing==0 do
+        puts "Amazing! You guessed the number in the first try!"
+    end
+    defp _guessing_game(random_number, number_of_guessing, guessed_number) when random_number == guessed_number and number_of_guessing>=1 do
+        puts "Amazing! You guessed the number in #{number_of_guessing} tries!"
+    end
+
+
+    
+
+
+
+
+
+
+
 
 
 
