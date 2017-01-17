@@ -145,25 +145,7 @@ defmodule Learn2 do
         |>String.to_integer
     end
 
-   # defp _check_duplicates([_], tries), do: tries = tries + 1  
-    #defp _check_duplicates(list, tries) do
-    #    head = hd(list)
-     #   tail = tl(list)
-      #  if(head != hd(tail)) do
-       #     tries = tries + 1
-       # end
-       # _check_duplicates(tl(list), tries)
-    #end    
-
-    
-
-
-
-
-
-
-
-    #Write a program that prints the next 20 leap years.
+    #11. Write a program that prints the next 20 leap years.
     def leap_years do
         cont = 20
         year = 2017
@@ -181,18 +163,4 @@ defmodule Learn2 do
         _leap_years(cont, year)
     end
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
