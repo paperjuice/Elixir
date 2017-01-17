@@ -28,7 +28,7 @@ defmodule Learn2 do
         puts "#{total} cartofi"
     end
 
-    #try to turn a IO.gets into an is_integer
+    #5. try to turn a IO.gets into an is_integer
     def x do
         b = IO.gets("Enter an integer: \n") 
         |> String.trim("\n")
@@ -36,7 +36,7 @@ defmodule Learn2 do
         puts "#{b + 1}"
     end
 
-    #sum only when div with 3 or 5 in a list
+    #6. sum only when div with 3 or 5 in a list
     def sum(list,total) do 
         _sum(list,total)
     end
@@ -50,7 +50,7 @@ defmodule Learn2 do
         _sum(tl(list),total)
     end
 
-    #sum from 1 to n, where n is divizible with 3 or 5
+    #7. sum from 1 to n, where n is divizible with 3 or 5
     def sum2(number, total) do
         _sum2(number, total)
     end
@@ -65,7 +65,7 @@ defmodule Learn2 do
     end
     
 
-    #Write a program that prints a multiplication table for numbers up to 12.
+    #8. Write a program that prints a multiplication table for numbers up to 12.
     def multiply_table do
         a = 1
         b = 1
@@ -86,7 +86,7 @@ defmodule Learn2 do
     end  
 
 
-    #Write a program that prints all prime numbers until 99.
+    #9. Write a program that prints all prime numbers until 99.
     def primes do
         number_divided_by = 1
         divisor = 1
@@ -109,7 +109,7 @@ defmodule Learn2 do
         _primes(1, number_divided_by+1)
     end
 
-    #Write a guessing game where the user has to guess a secret number. 
+    #10. Write a guessing game where the user has to guess a secret number. 
     #After every guess the program tells the user 
     #whether their number was too large or too small. 
     #At the end the number of tries needed should be printed. 
@@ -117,34 +117,51 @@ defmodule Learn2 do
     def guessing_game do
         random_number = Enum.random(1..10)
         number_of_guessings = 0
-        guessed_number = gets("Guess a number between 1 and 10 included.\n")
-        |>String.trim("\n")
-        |>String.to_integer
-        
-        _guessing_game(random_number, number_of_guessings, guessed_number)
+        number = input_number("Guess a number between 1 and 10 included.\n")
+        _guessing_game(random_number, number_of_guessings, number)
     end
     defp _guessing_game(random_number, number_of_guessing, guessed_number) when random_number > guessed_number do
-        guessed_number = gets("The number is higher than your guess. Try another number! \n")
-        |>String.trim("\n")
-        |>String.to_integer
-
         number_of_guessing = number_of_guessing + 1
-        _guessing_game(random_number, number_of_guessing, guessed_number)
+        number = input_number("The number is higher than your guess. Try another number! \n")
+        #list ++ [number]
+        _guessing_game(random_number, number_of_guessing, number)
     end
     defp _guessing_game(random_number, number_of_guessing, guessed_number) when random_number < guessed_number do
-        guessed_number = gets("The number is lower than your guess. Try another number! \n")
-        |>String.trim("\n")
-        |>String.to_integer
-
         number_of_guessing = number_of_guessing + 1
-        _guessing_game(random_number, number_of_guessing, guessed_number)
+        number = input_number("The number is lower than your guess. Try another number! \n")
+        #list ++ [number]
+        _guessing_game(random_number, number_of_guessing, number)
     end
-    defp _guessing_game(random_number, number_of_guessing, guessed_number) when random_number == guessed_number and number_of_guessing==0 do
+    defp _guessing_game(random_number, number_of_guessing, guessed_number) when random_number == guessed_number and number_of_guessing == 0 do
         puts "Amazing! You guessed the number in the first try!"
     end
     defp _guessing_game(random_number, number_of_guessing, guessed_number) when random_number == guessed_number and number_of_guessing>=1 do
-        puts "Amazing! You guessed the number in #{number_of_guessing} tries!"
+        puts "Great job! You guessed the number in #{number_of_guessing} tries!"
     end
+
+    defp input_number(string) do
+        gets(string)
+        |>String.trim("\n")
+        |>String.to_integer
+    end
+
+   # defp _check_duplicates([_], tries), do: tries = tries + 1  
+    #defp _check_duplicates(list, tries) do
+    #    head = hd(list)
+     #   tail = tl(list)
+      #  if(head != hd(tail)) do
+       #     tries = tries + 1
+       # end
+       # _check_duplicates(tl(list), tries)
+    #end    
+
+    
+
+
+
+
+
+
 
     #Write a program that prints the next 20 leap years.
     def leap_years do
