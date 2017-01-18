@@ -78,6 +78,44 @@ defmodule Lists do
          end
     end
 
+    #8. Write a function on_all that applies a function to every element of a list. 
+    #Use it to print the first twenty perfect squares (a natural number n is a 
+    #perfect square if it can be written as n=m*m for some other natural 
+    #number m. 1,4,9,16,25 are the first 5)
+    def square do
+        nil
+    end
+    
+    #9. Write a function that concatenates two lists.
+    def concat do
+        [1,2,3]++["a",:asd,2.3]
+    end
+    
+    #10. Write a function that combines two lists by 
+    #alternatingly taking elements, e.g. [a,b,c], [1,2,3] → [a,1,b,2,c,3].
+    def alter_lists do
+        order = 0
+        outcome = []
+        list1 = [1,2,3]
+        list2 = ["a","b","c"]
+        _alter_lists(order, list1, list2, outcome)
+    end
+    defp _alter_lists(_,[],[],outcome), do: puts "#{outcome}"
+    defp _alter_lists(_,[],list2,outcome), do: outcome ++ list2
+    defp _alter_lists(_,list1,[],outcome), do: outcome ++ list1
+    defp _alter_lists(order, list1, list2, outcome) when rem(order,2)==0 do
+        outcome = outcome ++ [hd(list1)]
+        list1 = tl(list1)
+        order = order + 1
+        _alter_lists(order, list1, list2, outcome)
+    end
+    defp _alter_lists(order, list1, list2, outcome) when rem(order,2)==1 do
+        outcome = outcome ++ [hd(list2)]
+        list2 = tl(list2)
+        order = order + 1
+        _alter_lists(order, list1, list2, outcome)
+    end
+
 
 
 
