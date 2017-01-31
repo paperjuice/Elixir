@@ -116,7 +116,17 @@ defmodule Lists do
         _alter_lists(order, list1, list2, outcome)
     end
 
-
+    #11. Write a function that merges two sorted lists into 
+    #a new sorted list. [1,4,6],[2,3,5] → [1,2,3,4,5,6]. 
+    def sort do
+        list1 = [1,6,5]
+        list2 = [6,2,4,3]
+        list1 = list1 ++ list2
+        _sort(list1)
+    end
+    defp _sort do
+        
+    end
 
 
 end
