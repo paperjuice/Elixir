@@ -4,7 +4,7 @@ defmodule Learn do
     import NewModule
     require Integer
 
-    
+
 
     def say_here do
         inspect ("Hello World!")
@@ -12,7 +12,7 @@ defmodule Learn do
 
     def inspect(param1) do
         puts "Starting Output"
-        puts param1 
+        puts param1
         puts "Ending output"
     end
 

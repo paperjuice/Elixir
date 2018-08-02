@@ -32,10 +32,4 @@ defmodule KV.Registry do
       {:noreplay, Map.put(names, name, bucket)}
     end
   end
-
-
-
-
-
-
 end
