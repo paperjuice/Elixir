@@ -1,4 +1,7 @@
 defmodule CallerContext do
+  @moduledoc """
+  Following Metaprogramming Elixir by Chris McCoord, page: 16
+  """
 
   defmacro definfo do
     IO.puts "In macro's context: #{__MODULE__}"

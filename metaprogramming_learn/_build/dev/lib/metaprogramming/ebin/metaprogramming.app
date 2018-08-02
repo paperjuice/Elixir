@@ -1,9 +1,0 @@
-{application,metaprogramming,
-             [{applications,[kernel,stdlib,elixir,logger]},
-              {description,"metaprogramming"},
-              {modules,['Elixir.CallerContext','Elixir.Metaprogramming',
-                        'Elixir.Metaprogramming.ControlFlow',
-                        'Elixir.MyModule']},
-              {registered,[]},
-              {vsn,"0.1.0"},
-              {extra_applications,[logger]}]}.
