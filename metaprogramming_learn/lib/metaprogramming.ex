@@ -19,10 +19,4 @@ defmodule Metaprogramming do
       IO.puts "#{lhs} multiplied by #{rhs} is #{result}"
     end
   end
-
-
-
-  def a + b do
-    "Hello"
-  end
 end
