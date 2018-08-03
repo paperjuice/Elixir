@@ -1,8 +1,9 @@
 defmodule MetaprogrammingTest do
-  use ExUnit.Case
-  doctest Metaprogramming
+  import TUnit
 
-  test "greets the world" do
-    assert Metaprogramming.hello() == :world
+  def run do
+    assert 5 == 5
+    assert 2 == 3
+    assert 2 > 1
   end
 end
