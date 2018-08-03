@@ -1,5 +1,5 @@
 defmodule Metaprogramming do
-
+  @moduledoc false
 
   defmacro say({:+, _, [lhs, rhs]}) do
     quote do

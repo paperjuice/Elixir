@@ -1,6 +1,6 @@
 defmodule IfRecreated do
   @moduledoc """
-  Following Metaprogramming Elixir by Chris McCoord, page: 22
+  Following Metaprogramming Elixir by Chris McCord, page: 22
   """
 
   defmacro if(statement, do: block, else: else_block) do

@@ -1,6 +1,6 @@
 defmodule Setter do
   @moduledoc """
-  Following Metaprogramming Elixir by Chris McCoord, page: 19
+  Following Metaprogramming Elixir by Chris McCord, page: 19
   """
 
   @doc """
