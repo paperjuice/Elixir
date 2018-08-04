@@ -3,6 +3,19 @@ defmodule TUnit do
   Following Metaprogramming Elixir by Chris McCord, page: 27
   """
 
+  @doc """
+  Page 36
+  """
+  defmacro __using__(_opt \\ []) do
+    quote do
+      import unquote(__MODULE__)
+
+      def run do
+        IO.puts "Running the tests..."
+      end
+    end
+  end
+
   defmacro assert({symbol, _, [lhs, rhs]}) do
     quote bind_quoted: [symbol: symbol, lhs: lhs, rhs: rhs] do
       TUnit.Test.test(symbol, lhs, rhs)

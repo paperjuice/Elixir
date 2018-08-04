@@ -1,0 +1,3 @@
+defmodule ModuleExtensionCustom do
+
+end
