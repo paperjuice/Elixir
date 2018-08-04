@@ -26,11 +26,11 @@ defmodule Translator do
 
     final_ast = quote do
       def t(locale, path, bindings \\ [])
-      unquote(translation_ast) |> IO.inspect
+      unquote(translation_ast)
       def t(_locale, _path, _bindings), do: {:error, :no_translation}
     end
 
-    # IO.puts Macro.to_string(final_ast)
+    IO.puts Macro.to_string(final_ast)
     final_ast
   end
 
@@ -41,7 +41,7 @@ defmodule Translator do
         deftranslation(locale, path, val)
       else
         quote do
-          def t(unquote(locale), unquote(path), binding) do
+          def t(unquote(locale), unquote(path), bindings) do
             unquote(interpolate(val))
           end
         end
@@ -49,8 +49,17 @@ defmodule Translator do
     end
   end
 
+  #TODO: Understand this!
   defp interpolate(string) do
-    string
+    ~r/(?<head>)%{[^}]+}(?<tail>)/
+      |> Regex.split(string, on: [:head, :tail])
+      |> Enum.reduce "", fn <<"%{" <> rest>>, acc ->
+        key = String.to_atom(String.rstrip(rest, ?}))
+        quote do
+          unquote(acc) <> to_string(Keyword.get(bindings, unquote(key)))
+        end
+        segment, acc -> quote do: (unquote(acc) <> unquote(segment))
+      end
   end
 
   defp append_path("", next), do: to_string(next)
