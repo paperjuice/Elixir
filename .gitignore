@@ -25,3 +25,5 @@ metaprogramming-*.tar
 
 # Ignore vim temp files
 *.swp
+
+test.txt
